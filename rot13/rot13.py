@@ -17,7 +17,7 @@ import argparse;
 
 # encr - en-/de-crypt a chararacter
 # @char The char to encrypt/decrypt
-# @offs Offset into the ascii tabe
+# @offs Offset into the ascii table
 # @rot  Rotation to apply to @char
 # Returns the en-/de-crypted character
 def encr(char, offs, rot=13):
