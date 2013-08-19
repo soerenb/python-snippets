@@ -1,6 +1,4 @@
-#!/usr/bin/env python
-
-# rot13.py - Rot13 en-/de-coder
+# rot13.py - Rot13 en-/de-coder module
 # Copyright (C) 2013  Sören Brinkmann <soeren.brinkmann@gmail.com>
 #
 # This program is free software; you can redistribute it and/or
@@ -12,8 +10,6 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-
-import argparse
 
 # encr_char - en-/de-crypt a chararacter
 # @char The char to encrypt/decrypt
@@ -55,38 +51,3 @@ def encr(pt, mode = 0):
         ct.append(chr(char));
 
     return ct
-
-# define and parse command line arguments
-parser = argparse.ArgumentParser(description = "Rot13 de-/encoder.")
-parser.add_argument('msg', metavar="<MESSAGE>", nargs="?",
-        default="Hello World! 4711", help="Message to encrypt.")
-parser.add_argument('--input', '-input', help="Input file.")
-parser.add_argument('--output', '-output', help="Output file.")
-parser.add_argument('--rot47', '-rot47', action="store_const", const=1,
-        default=0, help="Encryption mode rot47, default is rot13.")
-args = parser.parse_args()
-
-if (args.input == None):
-    pt = args.msg
-    print("Plain text:")
-    print(pt)
-else:
-    print("Reading plain text from file \"{}\".".format(args.input))
-    fin = open(args.input, "r")
-    try:
-        pt = fin.read()
-    finally:
-        fin.close()
-
-ct = encr(pt, args.rot47)
-
-if (args.output == None):
-    print("Encrypted text:")
-    print("".join(ct))
-else:
-    print("Writing cypher text to file \"{}\".".format(args.output))
-    fout = open(args.output, "w")
-    try:
-        fout.write("".join(ct))
-    finally:
-        fout.close()
