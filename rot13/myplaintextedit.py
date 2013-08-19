@@ -15,7 +15,18 @@ from PyQt4 import QtCore, QtGui
 import rot13
 
 class myPlainTextEdit(QtGui.QPlainTextEdit):
+    def __init__(self, qwidget):
+        self.cypher = 0
+        super(myPlainTextEdit, self).__init__(qwidget)
+
     @QtCore.pyqtSlot()
     def decryptText(self):
-        ct = rot13.encr(self.toPlainText())
+        ct = rot13.encr(self.toPlainText(), self.cypher)
         self.setPlainText("".join(ct))
+
+    @QtCore.pyqtSlot(bool)
+    def setCypher(self, rot13):
+        if rot13 == True:
+            self.cypher = 0
+        else:
+            self.cypher = 1

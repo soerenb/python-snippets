@@ -50,6 +50,35 @@
      <string>Clear</string>
     </property>
    </widget>
+   <widget class="QRadioButton" name="radioButton">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>10</y>
+      <width>61</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>rot47</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_2">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>10</y>
+      <width>61</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>rot13</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -100,6 +129,7 @@
    <header>myplaintextedit.h</header>
    <slots>
     <slot>decryptText()</slot>
+    <slot>setCypher()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -182,6 +212,22 @@
     <hint type="destinationlabel">
      <x>609</x>
      <y>100</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_2</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>plainTextEdit</receiver>
+   <slot>setCypher()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>459</x>
+     <y>45</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>459</x>
+     <y>89</y>
     </hint>
    </hints>
   </connection>
