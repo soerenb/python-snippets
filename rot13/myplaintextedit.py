@@ -1,6 +1,4 @@
-#!/usr/bin/env python
-
-# rot13_gui.py - Rot13 Qt GUI
+# myplaintextedit.py - pyqt plainTextEdit derived class
 # Copyright (C) 2013  Sören Brinkmann <soeren.brinkmann@gmail.com>
 #
 # This program is free software; you can redistribute it and/or
@@ -13,13 +11,11 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 
-import sys
-import rot13_gui
-from PyQt4 import QtCore, QtGui, Qt
+from PyQt4 import QtCore, QtGui
+import rot13
 
-app = QtGui.QApplication(sys.argv)
-window = QtGui.QMainWindow()
-ui = rot13_gui.Ui_MainWindow()
-ui.setupUi(window)
-window.show()
-sys.exit(app.exec_())
+class myPlainTextEdit(QtGui.QPlainTextEdit):
+    @QtCore.pyqtSlot()
+    def decryptText(self):
+        ct = rot13.encr(self.toPlainText())
+        self.setPlainText("".join(ct))

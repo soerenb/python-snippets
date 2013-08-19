@@ -14,7 +14,7 @@
    <string>Rot13 Decode</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPlainTextEdit" name="plainTextEdit">
+   <widget class="myPlainTextEdit" name="plainTextEdit">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -93,6 +93,16 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>myPlainTextEdit</class>
+   <extends>QPlainTextEdit</extends>
+   <header>myplaintextedit.h</header>
+   <slots>
+    <slot>decryptText()</slot>
+   </slots>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections>
   <connection>
@@ -146,16 +156,32 @@
   <connection>
    <sender>actionDecrypt</sender>
    <signal>triggered()</signal>
-   <receiver>pushButtonDecrypt</receiver>
-   <slot>click()</slot>
+   <receiver>plainTextEdit</receiver>
+   <slot>decryptText()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
      <y>-1</y>
     </hint>
     <hint type="destinationlabel">
-     <x>620</x>
-     <y>44</y>
+     <x>400</x>
+     <y>318</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonDecrypt</sender>
+   <signal>clicked()</signal>
+   <receiver>plainTextEdit</receiver>
+   <slot>decryptText()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>614</x>
+     <y>48</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>609</x>
+     <y>100</y>
     </hint>
    </hints>
   </connection>
