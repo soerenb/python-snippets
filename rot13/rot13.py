@@ -13,69 +13,80 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 
-import argparse;
+import argparse
 
-# encr - en-/de-crypt a chararacter
+# encr_char - en-/de-crypt a chararacter
 # @char The char to encrypt/decrypt
 # @offs Offset into the ascii table
 # @rot  Rotation to apply to @char
+#
 # Returns the en-/de-crypted character
-def encr(char, offs, rot=13):
-	tmp = (char + rot) // (2 * rot + offs);
-	char = (char + rot) % (2 * rot + offs);
-	if (tmp):
-		char += offs;
-	return char;
+def encr_char(char, offs, rot=13):
+    tmp = (char + rot) // (2 * rot + offs)
+    char = (char + rot) % (2 * rot + offs)
+    if (tmp):
+        char += offs
+    return char
+
+# encr - rot13 encrypt text
+# @pt Plain text
+# @mode If set rot47 else rot13
+#
+# Returns the encrypted text
+def encr(pt, mode = 0):
+    ct = []
+
+    for i in range(len(pt)):
+        char = ord(pt[i])
+        if (mode):
+            if ((char >= 0x20) and (char <= 0x7d)):
+                char = encr_char(char, 0x20, 47)
+        else:
+            # upper case chars
+            if ((char >= 0x41) and (char <= 0x5a)):
+                char = encr_char(char, 0x41)
+            # lower case chars
+            if ((char >= 0x61) and (char <= 0x7a)):
+                char = encr_char(char, 0x61)
+            # numbers
+            if ((char >= 0x30) and (char <= 0x39)):
+                char = encr_char(char, 0x30, 5)
+
+        ct.append(chr(char));
+
+    return ct
 
 # define and parse command line arguments
-parser = argparse.ArgumentParser(description = "Rot13 de-/encoder.");
+parser = argparse.ArgumentParser(description = "Rot13 de-/encoder.")
 parser.add_argument('msg', metavar="<MESSAGE>", nargs="?",
-        default="Hello World! 4711", help="Message to encrypt.");
-parser.add_argument('--input', '-input', help="Input file.");
-parser.add_argument('--output', '-output', help="Output file.");
+        default="Hello World! 4711", help="Message to encrypt.")
+parser.add_argument('--input', '-input', help="Input file.")
+parser.add_argument('--output', '-output', help="Output file.")
 parser.add_argument('--rot47', '-rot47', action="store_const", const=1,
-        default=0, help="Encryption mode rot47, default is rot13.");
-args = parser.parse_args();
+        default=0, help="Encryption mode rot47, default is rot13.")
+args = parser.parse_args()
 
 if (args.input == None):
-	pt = args.msg;
-	print("Plain text:");
-	print(pt);
+    pt = args.msg
+    print("Plain text:")
+    print(pt)
 else:
-	print("Reading plain text from file \"{}\".".format(args.input));
-	fin = open(args.input, "r");
-	try:
-		pt = fin.read();
-	finally:
-		fin.close();
+    print("Reading plain text from file \"{}\".".format(args.input))
+    fin = open(args.input, "r")
+    try:
+        pt = fin.read()
+    finally:
+        fin.close()
 
-ct = [];
-
-for i in range(len(pt)):
-	char = ord(pt[i]);
-	if (args.rot47):
-		if ((char >= 0x20) and (char <= 0x7d)):
-			char = encr(char, 0x20, 47);
-	else:
-		# upper case chars
-		if ((char >= 0x41) and (char <= 0x5a)):
-			char = encr(char, 0x41);
-		# lower case chars
-		if ((char >= 0x61) and (char <= 0x7a)):
-			char = encr(char, 0x61);
-		# numbers
-		if ((char >= 0x30) and (char <= 0x39)):
-			char = encr(char, 0x30, 5);
-	
-	ct.append(chr(char));
+ct = encr(pt, args.rot47)
 
 if (args.output == None):
-	print("Encrypted text:");
-	print("".join(ct));
+    print("Encrypted text:")
+    print("".join(ct))
 else:
-	print("Writing cypher text to file \"{}\".".format(args.output));
-	fout = open(args.output, "w");
-	try:
-		fout.write("".join(ct));
-	finally:
-		fout.close();
+    print("Writing cypher text to file \"{}\".".format(args.output))
+    fout = open(args.output, "w")
+    try:
+        fout.write("".join(ct))
+    finally:
+        fout.close()
