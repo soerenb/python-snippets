@@ -11,7 +11,7 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 
-from PyQt4 import QtCore, QtGui
+from PyQt4 import QtCore, QtGui, Qt
 import rot13
 
 class myPlainTextEdit(QtGui.QPlainTextEdit):
@@ -30,3 +30,20 @@ class myPlainTextEdit(QtGui.QPlainTextEdit):
             self.cypher = 0
         else:
             self.cypher = 1
+
+    @QtCore.pyqtSlot()
+    def loadFile(self):
+        path = QtGui.QFileDialog.getOpenFileName(self)
+        if not path:
+            return
+
+        try:
+            fin = open(path, "r")
+        except IOError:
+            print("unable to open '{}'".format(path))
+            return
+
+        pt = fin.read()
+        fin.close()
+
+        self.setPlainText("".join(pt))
