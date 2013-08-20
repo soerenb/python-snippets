@@ -18,26 +18,40 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>70</y>
+      <y>80</y>
       <width>761</width>
-      <height>511</height>
+      <height>501</height>
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButtonDecrypt">
+   <widget class="QToolButton" name="toolButtonDecrypt">
     <property name="geometry">
      <rect>
       <x>580</x>
-      <y>20</y>
-      <width>81</width>
-      <height>31</height>
+      <y>10</y>
+      <width>71</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="toolTip">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Decrypt text using the selected cypher.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;En-/Decrypt text using the selected cypher.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="text">
      <string>Decrypt</string>
+    </property>
+    <property name="icon">
+     <iconset theme="document-encrypt">
+      <normaloff/>
+     </iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
+    </property>
+    <property name="toolButtonStyle">
+     <enum>Qt::ToolButtonTextUnderIcon</enum>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButtonClear">
@@ -60,7 +74,7 @@
     <property name="geometry">
      <rect>
       <x>490</x>
-      <y>20</y>
+      <y>40</y>
       <width>61</width>
       <height>31</height>
      </rect>
@@ -75,8 +89,8 @@
    <widget class="QRadioButton" name="radioButton_2">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>20</y>
+      <x>490</x>
+      <y>10</y>
       <width>61</width>
       <height>31</height>
      </rect>
@@ -96,21 +110,29 @@
      <rect>
       <x>40</x>
       <y>10</y>
-      <width>51</width>
-      <height>41</height>
+      <width>71</width>
+      <height>61</height>
      </rect>
     </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open file.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
     <property name="text">
-     <string>...</string>
+     <string>Open</string>
     </property>
     <property name="icon">
-     <iconset theme="document-open"/>
+     <iconset theme="document-open">
+      <normaloff/>
+     </iconset>
     </property>
     <property name="iconSize">
      <size>
       <width>32</width>
       <height>32</height>
      </size>
+    </property>
+    <property name="toolButtonStyle">
+     <enum>Qt::ToolButtonTextUnderIcon</enum>
     </property>
    </widget>
   </widget>
@@ -241,22 +263,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>pushButtonDecrypt</sender>
-   <signal>clicked()</signal>
-   <receiver>plainTextEdit</receiver>
-   <slot>decryptText()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>614</x>
-     <y>48</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>609</x>
-     <y>100</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>radioButton_2</sender>
    <signal>toggled(bool)</signal>
    <receiver>plainTextEdit</receiver>
@@ -301,6 +307,22 @@
     <hint type="destinationlabel">
      <x>93</x>
      <y>132</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolButtonDecrypt</sender>
+   <signal>clicked()</signal>
+   <receiver>plainTextEdit</receiver>
+   <slot>decryptText()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>597</x>
+     <y>58</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>596</x>
+     <y>109</y>
     </hint>
    </hints>
   </connection>
