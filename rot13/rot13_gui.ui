@@ -27,7 +27,7 @@
    <widget class="QToolButton" name="toolButtonDecrypt">
     <property name="geometry">
      <rect>
-      <x>580</x>
+      <x>660</x>
       <y>10</y>
       <width>71</width>
       <height>61</height>
@@ -54,26 +54,10 @@
      <enum>Qt::ToolButtonTextUnderIcon</enum>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButtonClear">
-    <property name="geometry">
-     <rect>
-      <x>680</x>
-      <y>20</y>
-      <width>81</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="toolTip">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Clear text.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-    <property name="text">
-     <string>Clear</string>
-    </property>
-   </widget>
    <widget class="QRadioButton" name="radioButton">
     <property name="geometry">
      <rect>
-      <x>490</x>
+      <x>570</x>
       <y>40</y>
       <width>61</width>
       <height>31</height>
@@ -89,7 +73,7 @@
    <widget class="QRadioButton" name="radioButton_2">
     <property name="geometry">
      <rect>
-      <x>490</x>
+      <x>570</x>
       <y>10</y>
       <width>61</width>
       <height>31</height>
@@ -108,7 +92,7 @@
    <widget class="QToolButton" name="toolButtonOpenFile">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>130</x>
       <y>10</y>
       <width>71</width>
       <height>61</height>
@@ -135,6 +119,34 @@
      <enum>Qt::ToolButtonTextUnderIcon</enum>
     </property>
    </widget>
+   <widget class="QToolButton" name="toolButtonNewFile">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>10</y>
+      <width>71</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open file.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="text">
+     <string>New</string>
+    </property>
+    <property name="icon">
+     <iconset theme="document-new"/>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
+    </property>
+    <property name="toolButtonStyle">
+     <enum>Qt::ToolButtonTextUnderIcon</enum>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -149,6 +161,7 @@
     <property name="title">
      <string>File</string>
     </property>
+    <addaction name="actionNew"/>
     <addaction name="actionOpen"/>
     <addaction name="actionExit"/>
    </widget>
@@ -156,7 +169,6 @@
     <property name="title">
      <string>Edit</string>
     </property>
-    <addaction name="actionClear"/>
     <addaction name="actionDecrypt"/>
    </widget>
    <addaction name="menuFile"/>
@@ -173,14 +185,14 @@
     <string>Decrypt</string>
    </property>
   </action>
-  <action name="actionClear">
-   <property name="text">
-    <string>Clear</string>
-   </property>
-  </action>
   <action name="actionOpen">
    <property name="text">
     <string>Open</string>
+   </property>
+  </action>
+  <action name="actionNew">
+   <property name="text">
+    <string>New</string>
    </property>
   </action>
  </widget>
@@ -198,38 +210,6 @@
  </customwidgets>
  <resources/>
  <connections>
-  <connection>
-   <sender>pushButtonClear</sender>
-   <signal>clicked()</signal>
-   <receiver>plainTextEdit</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>690</x>
-     <y>49</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>685</x>
-     <y>111</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionClear</sender>
-   <signal>triggered()</signal>
-   <receiver>plainTextEdit</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>400</x>
-     <y>318</y>
-    </hint>
-   </hints>
-  </connection>
   <connection>
    <sender>actionExit</sender>
    <signal>triggered()</signal>
@@ -269,12 +249,12 @@
    <slot>setCypher()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>459</x>
-     <y>45</y>
+     <x>490</x>
+     <y>59</y>
     </hint>
     <hint type="destinationlabel">
      <x>459</x>
-     <y>89</y>
+     <y>108</y>
     </hint>
    </hints>
   </connection>
@@ -301,8 +281,8 @@
    <slot>loadFile()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>74</x>
-     <y>46</y>
+     <x>164</x>
+     <y>65</y>
     </hint>
     <hint type="destinationlabel">
      <x>93</x>
@@ -323,6 +303,38 @@
     <hint type="destinationlabel">
      <x>596</x>
      <y>109</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolButtonNewFile</sender>
+   <signal>clicked()</signal>
+   <receiver>plainTextEdit</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>78</x>
+     <y>70</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>71</x>
+     <y>144</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionNew</sender>
+   <signal>triggered()</signal>
+   <receiver>plainTextEdit</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>400</x>
+     <y>349</y>
     </hint>
    </hints>
   </connection>
