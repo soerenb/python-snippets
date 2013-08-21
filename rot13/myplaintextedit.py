@@ -47,3 +47,22 @@ class myPlainTextEdit(QtGui.QPlainTextEdit):
         fin.close()
 
         self.setPlainText("".join(pt))
+
+    @QtCore.pyqtSlot()
+    def saveFileAs(self):
+        path = QtGui.QFileDialog.getSaveFileName(self)
+        if not path:
+            return
+
+        try:
+            fout = open(path, "w")
+        except IOError:
+            print("unable to open '{}'".format(path))
+            return
+
+        try:
+            fout.write(self.toPlainText())
+        except IOError:
+            print("unable to write '{}'".format(path))
+        fout.close()
+

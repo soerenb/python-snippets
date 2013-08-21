@@ -135,7 +135,39 @@
      <string>New</string>
     </property>
     <property name="icon">
-     <iconset theme="document-new"/>
+     <iconset theme="document-new">
+      <normaloff/>
+     </iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
+    </property>
+    <property name="toolButtonStyle">
+     <enum>Qt::ToolButtonTextUnderIcon</enum>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButtonSaveFileAs">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>10</y>
+      <width>71</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open file.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="text">
+     <string>Save as</string>
+    </property>
+    <property name="icon">
+     <iconset theme="document-save-as">
+      <normaloff/>
+     </iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -163,6 +195,7 @@
     </property>
     <addaction name="actionNew"/>
     <addaction name="actionOpen"/>
+    <addaction name="actionSave_as"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
@@ -195,6 +228,11 @@
     <string>New</string>
    </property>
   </action>
+  <action name="actionSave_as">
+   <property name="text">
+    <string>Save as ...</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -205,6 +243,7 @@
     <slot>decryptText()</slot>
     <slot>setCypher()</slot>
     <slot>loadFile()</slot>
+    <slot>saveFileAs()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -249,7 +288,7 @@
    <slot>setCypher()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>490</x>
+     <x>570</x>
      <y>59</y>
     </hint>
     <hint type="destinationlabel">
@@ -297,8 +336,8 @@
    <slot>decryptText()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>597</x>
-     <y>58</y>
+     <x>660</x>
+     <y>77</y>
     </hint>
     <hint type="destinationlabel">
      <x>596</x>
@@ -327,6 +366,38 @@
    <signal>triggered()</signal>
    <receiver>plainTextEdit</receiver>
    <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>400</x>
+     <y>349</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolButtonSaveFileAs</sender>
+   <signal>clicked()</signal>
+   <receiver>plainTextEdit</receiver>
+   <slot>saveFileAs()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>262</x>
+     <y>59</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>276</x>
+     <y>124</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSave_as</sender>
+   <signal>triggered()</signal>
+   <receiver>plainTextEdit</receiver>
+   <slot>saveFileAs()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
