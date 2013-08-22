@@ -13,6 +13,7 @@
 
 from PyQt4 import QtCore, QtGui, Qt
 import rot13
+import mypopup
 
 class myPlainTextEdit(QtGui.QPlainTextEdit):
     def __init__(self, qwidget):
@@ -41,6 +42,10 @@ class myPlainTextEdit(QtGui.QPlainTextEdit):
             fin = open(path, "r")
         except IOError:
             print("unable to open '{}'".format(path))
+            msgbox = mypopup.myPopup(self.parentWidget())
+            msgbox.ui.label.setText("ERROR: unable to open file '{}'".format(path))
+            msgbox.exec_()
+
             return
 
         pt = fin.read()
@@ -58,11 +63,18 @@ class myPlainTextEdit(QtGui.QPlainTextEdit):
             fout = open(path, "w")
         except IOError:
             print("unable to open '{}'".format(path))
+            msgbox = mypopup.myPopup(self.parentWidget())
+            msgbox.ui.label.setText("ERROR: unable to open file '{}'".format(path))
+            msgbox.exec_()
+
             return
 
         try:
             fout.write(self.toPlainText())
         except IOError:
             print("unable to write '{}'".format(path))
-        fout.close()
+            msgbox = mypopup.myPopup(self.parentWidget())
+            msgbox.ui.label.setText("ERROR: unable to write to file '{}'".format(path))
+            msgbox.exec_()
 
+        fout.close()
