@@ -214,21 +214,33 @@
    </property>
   </action>
   <action name="actionDecrypt">
+   <property name="icon">
+    <iconset theme="document-encrypt"/>
+   </property>
    <property name="text">
     <string>Decrypt</string>
    </property>
   </action>
   <action name="actionOpen">
+   <property name="icon">
+    <iconset theme="document-open"/>
+   </property>
    <property name="text">
     <string>Open</string>
    </property>
   </action>
   <action name="actionNew">
+   <property name="icon">
+    <iconset theme="document-new"/>
+   </property>
    <property name="text">
     <string>New</string>
    </property>
   </action>
   <action name="actionSave_as">
+   <property name="icon">
+    <iconset theme="document-save-as"/>
+   </property>
    <property name="text">
     <string>Save as ...</string>
    </property>
